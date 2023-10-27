@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<!-- Se configura la etiqueta namespace en el archivo para usar los atributos de thymeleaf -->
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!-- Se deben cerrar las etiquetas porque en Thymeleaf el no cerrarlas es un error -->
+    <meta charset="UTF-8" />
+
+    <!--
+        se usa el namespace que se le dio a thymeleaf para usarlo en las etiquetas
+        en este caso es th seguido de dos puntos y el nombre del atributo que enviamos
+        desde el handler para usarlo en la etiqueta como se muestra abajo
+     -->
+    <title th:text="${titulo}"></title>
+</head>
+<body>
+
+    <h1 th:text="${titulo}"></h1>
+
+</body>
+</html>
