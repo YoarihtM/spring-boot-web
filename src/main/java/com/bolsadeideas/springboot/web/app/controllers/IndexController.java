@@ -5,13 +5,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 
 @Controller
 
@@ -81,22 +79,46 @@ public class IndexController {
         model.addAttribute("usuario", usuario);
 
         return "perfil";
-
     }
 
     @RequestMapping("/listar")
     public String listar(Model model){
 
-        List<Usuario> usuarios = new ArrayList<>();
+    //    List<Usuario> usuarios = new ArrayList<>();
+    //
+    //    usuarios.add(new Usuario("Yoariht", "Macedo", "ymacedo@mail.com"));
+    //    usuarios.add(new Usuario("Brenda", "Martinez", "bmartinez@mail.com"));
+    //    usuarios.add(new Usuario("Melanie", "Macedo", "mmacedo@mail.com"));
 
-        usuarios.add(new Usuario("Yoariht", "Macedo", "ymacedo@mail.com"));
-        usuarios.add(new Usuario("Brenda", "Martinez", "bmartinez@mail.com"));
-        usuarios.add(new Usuario("Melanie", "Macedo", "mmacedo@mail.com"));
+    //  Otra forma de crear la lista de usuarios
+
+//        List<Usuario> usuarios = Arrays.asList(
+//                new Usuario("Yoariht", "Macedo", "ymacedo@mail.com"),
+//                new Usuario("Brenda", "Martinez", "bmartinez@mail.com"),
+//                new Usuario("Melanie", "Macedo", "mmacedo@mail.com")
+//        );
 
         model.addAttribute("titulo", "Listado de usuarios");
-        model.addAttribute("usuarios", usuarios);
+    //  model.addAttribute("usuarios", usuarios);
 
         return "listar";
+    }
+
+    // Otra forma de pasar datos desde el controlador a la vista es mediante la notacion @ModelAttribute
+    // En la anotacion se coloca el nombre de la variable que vamos a enviar a la vista de modo que
+    // como en el caso anterior la variable de la lista fue "usuarios" esta vez se anota @ModelAttribute("usuarios")
+    // y se retorna el valor asignado a dicha variable por eso el metodo es de tipo List en este caso
+    // esta notacion se hace para pasar datos a la vista de todos los handlers o controladores que formen parte de la app
+    // por esa razon se ha comentado en el metodo anterior la informacion de los usuarios
+    @ModelAttribute("usuarios")
+    public List<Usuario> poblarUsuarios(){
+        List<Usuario> usuarios = Arrays.asList(
+                new Usuario("Yoariht", "Macedo", "ymacedo@mail.com"),
+                new Usuario("Brenda", "Martinez", "bmartinez@mail.com"),
+                new Usuario("Melanie", "Macedo", "mmacedo@mail.com")
+        );
+
+        return usuarios;
     }
 
 }

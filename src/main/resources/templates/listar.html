@@ -8,8 +8,8 @@
 
     <h1 th:text="${titulo}"></h1>
 
-    <div th:if="${usuarios.size() == 0}">No hay usuarios en la lista</div>
-    <table th:if="${usuarios.size() != 0}">
+    <div th:if="${usuarios.isEmpty()}">No hay usuarios en la lista</div>
+    <table th:if="${not usuarios.isEmpty()}">
         <thead>
             <th>Nombre</th>
             <th>Apellido</th>
