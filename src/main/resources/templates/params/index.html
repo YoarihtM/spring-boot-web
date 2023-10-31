@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title th:text="${titulo}"></title>
+</head>
+<body>
+  <h1 th:text="${titulo}"></h1>
+  <!--
+    Para indicar las rutas en thymeleaf se usa la notacion con un @{} y dentro de las llaves
+    se colocan rutas que estan ya se encuentran mapeadas por un controlador o handler
+    los parametros que se envian a las rutas se envian haciendo referencia a la variable y su valor
+    en el caso de las cadenas se encierran en comillas simples
+   -->
+  <li><a th:href="@{/params/string(texto='Hola Yoariht')}">/params/string?texto=Hola Yoariht</a></li>
+  <li><a th:href="@{/params/string(texto='Que tal Brenda!')}">/params/string?texto=Que tal Brenda!</a></li>
+  <li><a th:href="@{/params/mix-params(saludo='Que tal Brenda!', numero=1)}">/params/string?texto=Que tal Brenda!&numero=1</a></li>
+  <li><a th:href="@{/params/mix-params(saludo='Que tal Melanie!', numero=6)}">/params/string?texto=Que tal Melanie!&numero=6</a></li>
+</body>
+</html>
