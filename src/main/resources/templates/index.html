@@ -11,10 +11,18 @@
         desde el handler para usarlo en la etiqueta como se muestra abajo
      -->
     <title th:text="${titulo}"></title>
+
+    <!--
+        para enlazar los archivos de la carpeta static se usa el enrutado de thymeleaf
+        pasa igual con las imagenes y los archivos css, js
+     -->
+    <link rel="stylesheet" type="text/css" th:href="@{/css/styles.css}"></link>
 </head>
 <body>
 
-    <h1 th:text="${titulo}"></h1>
+    <h1 class="color-rojo" th:text="${titulo}"></h1>
+    <h1 class="color-azul" th:text="${titulo}"></h1>
 
+    <img th:src="@{/images/img.jpg}">
 </body>
 </html>
