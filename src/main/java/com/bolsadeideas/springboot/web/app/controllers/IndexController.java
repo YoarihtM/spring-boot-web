@@ -1,6 +1,7 @@
 package com.bolsadeideas.springboot.web.app.controllers;
 
 import com.bolsadeideas.springboot.web.app.models.Usuario;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -21,6 +22,23 @@ import java.util.*;
 public class IndexController {
     // Handlers o métodos que representan una página web
     // para manejar las peticiones de los usuarios
+
+    // con la notacion @Value podemos utilizar informacion que se encuentra en los archivos
+    // de tipo properties, de modo que podemos crear y personalizar nuestros propios archivos
+    // de este tipo, lo unico requerido es crear una clase de configuracion por cada archivo
+    // estas clases de configuracion se encontraran todas en la raiz del proyecto, es decir,
+    // al mismo nivel en que se encuentra la clase principal de SpringBoot (SpringBootWebApplication)
+
+    // dentro de la notacion @Value se agregan los valores a los que hacemos referencia
+    // en forma de variable de Thymeleaf
+    @Value("${texto.indexcontroller.index.titulo}")
+    private String textoIndex;
+
+    @Value("${texto.indexcontroller.perfil.titulo}")
+    private String textoPerfil;
+
+    @Value("${texto.indexcontroller.listar.titulo}")
+    private String textoListar;
 
     // Se mapea para relacionar la ruta URL con el metodo que estamos implementando
     // el primer parametro es la ruta y el segundo el metodo de peticion con el que se accede a la ruta
@@ -63,7 +81,7 @@ public class IndexController {
 
         // se envian los datos de la siguiente manera donde primero se manda el atributo del nombre del dato
         // y el segundo parametro es el valor del dato
-        mv.addObject("titulo", "Hola Spring Framework con ModelAndView!");
+        mv.addObject("titulo", textoIndex);
         mv.setViewName("index");
 
         return mv;
@@ -74,8 +92,7 @@ public class IndexController {
         Usuario usuario = new Usuario();
         usuario.setNombre("Yoariht");
         usuario.setApellido("Macedo");
-
-        model.addAttribute("titulo", "Perfil de usuario: ".concat(usuario.getNombre()));
+        model.addAttribute("titulo", textoPerfil.concat(usuario.getNombre()));
         model.addAttribute("usuario", usuario);
 
         return "perfil";
@@ -98,7 +115,7 @@ public class IndexController {
 //                new Usuario("Melanie", "Macedo", "mmacedo@mail.com")
 //        );
 
-        model.addAttribute("titulo", "Listado de usuarios");
+        model.addAttribute("titulo", textoListar);
     //  model.addAttribute("usuarios", usuarios);
 
         return "listar";
